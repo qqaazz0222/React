@@ -1,0 +1,88 @@
+@font-face {
+  font-family: "NanumSquareL";
+  src: url("./fonts/NanumSquareL.ttf");
+}
+@font-face {
+  font-family: "NanumSquareR";
+  src: url("./fonts/NanumSquareR.ttf");
+}
+@font-face {
+  font-family: "NanumSquareB";
+  src: url("./fonts/NanumSquareB.ttf");
+}
+
+.App {
+  text-align: center;
+}
+
+body {
+  font-family: 'NanumSquareR';
+}
+
+.postbody {
+  margin-top: 20px;
+  padding: 8px;
+  background: #eee;
+}
+
+.nav {
+  background: black;
+  width: 100%;
+  display: flex;
+  color: white;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  position: relative;
+}
+.tabs {
+  display: flex;
+  position: absolute;
+  right: 10%;
+}
+
+.tab {
+  margin-right: 8px;
+}
+
+.list {
+  margin-top: 30px;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
