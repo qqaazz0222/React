@@ -2,73 +2,50 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  let [currnetTab, setCurrentTab] = useState(0)
-  let [currentPost, setCurrentPost] = useState(0);
-  let tabs = [
-    {id: 0, title: '탭1'},
-    {id: 1, title: '탭2'},
-    {id: 2, title: '탭3'},
-  ]
-  let posts = [
-    {id: 1, title: '글제목1', createDate: '2022/07/10', like: 0, dislike: 0, discription: '글1 내용...'}, 
-    {id: 2, title: '글제목2', createDate: '2022/07/11', like: 0, dislike: 0, discription: '글2 내용...'}, 
-    {id: 3, title: '글제목3', createDate: '2022/07/12', like: 0, dislike: 0, discription: '글3 내용...'}
-  ]; 
+  let [title, setTitle] = useState(['글제목1', '글제목2', '글제목3']);
+  let [like, setLike] = useState(0);
+  let [modal, setModal] = useState(false);
+  let [modalTitle, setModalTitle] = useState(0);
+  let [inputData, setInputData] = useState('');
+
   return (
     <div className="App">
-      <Nav tabs={tabs}/>
-      <PostList currentPost={currentPost} setCurrentPost={setCurrentPost} posts={posts} />
+      <div className="nav">
+        <div>개발 Blog</div>
+      </div>
+      {
+        title.map(function(a, i) {
+          return (
+            <div className="list" key={i}>
+              <h3 onClick={ ()=>{ setModal(!modal); setModalTitle(i) }}>{ title[i] } <span onClick={ (e)=>{ e.stopPropagation(); setLike( like+1 )} }>👍</span>{ like }</h3>
+              <p>7월 12일 발행</p>
+              <button onClick={ ()=>{ 
+                let copy = [...title];
+                copy.splice(i, 1)
+                setTitle(copy) } }>삭제</button>
+              <hr/>
+            </div>
+          )
+        })
+      }
+      <input onChange={ (e)=>{ setInputData(e.target.value) } }></input>
+      <button onClick={ ()=>{ setTitle( [inputData, ...title]) } }>글 생성</button>
+      {
+        modal ? <Modal title={ title } setTitle={ setTitle } modalTitle={ modalTitle }/> : null
+      }
     </div>
   );
 }
 
-function Nav(props) {
+function Modal(props){
   return (
-    <div className="nav">
-      <div>개발 Blog</div>
-      <div className='tabs'>
-      {props.tabs.map((tab) => {
-        return (
-          <div className='tab' key={tab.id}>{tab.title}</div>
-        )
-      })}
-      </div>
+    <div className="modal">
+      <h4>{ props.title[ props.modalTitle ] }</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+      <button>글수정</button>
     </div>
   )
-}
-
-function PostList(props) {
-  let posts = props.posts;
-  return (
-    <div>
-      {posts.map((post) => {
-        return(
-          <div className="list" onClick={ ()=>{props.setCurrentPost(post.id)}}>
-          <h3> {post.title} <span>👍</span> {post.like} <span>👎</span> {post.dislike} </h3>
-          <p>{post.createDate}</p>
-          <PostBody id={post.id} discription={post.discription} currentPost={props.currentPost}/>
-          <hr/>
-          </div>
-        );
-      })}
-    </div>
-  )
-}
-
-function PostBody(props) {
-  if(props.currentPost === props.id) {
-    return (
-      <div>
-          <div className="postbody">
-          <p>{props.discription}</p>
-        </div>
-      </div>
-    )
-  }
-  else {
-    return (<></>)
-  }
-  
 }
 
 export default App;

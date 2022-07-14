@@ -19,12 +19,6 @@ body {
   font-family: 'NanumSquareR';
 }
 
-.postbody {
-  margin-top: 20px;
-  padding: 8px;
-  background: #eee;
-}
-
 .nav {
   background: black;
   width: 100%;
@@ -33,16 +27,6 @@ body {
   padding: 20px;
   font-weight: 600;
   font-size: 20px;
-  position: relative;
-}
-.tabs {
-  display: flex;
-  position: absolute;
-  right: 10%;
-}
-
-.tab {
-  margin-right: 8px;
 }
 
 .list {
@@ -50,6 +34,13 @@ body {
   text-align: left;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.modal {
+  margin-top : 20px;
+  padding : 20px;
+  background : #eee;
+  text-align : left;
 }
 
 .App-logo {
