@@ -5,7 +5,7 @@ function Card(props){
                 <img src={'https://codingapple1.github.io/shop/shoes'+ (props.i+1) + '.jpg'} width="80%"/>
             </a>
             <h4>{ props.shoes[props.i].title }</h4>
-            <p>{ props.shoes[props.i].price }</p>
+            <p>{ props.shoes[props.i].price }원</p>
         </div>
     )
 }
