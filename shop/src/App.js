@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { Container, Nav, Navbar, Button } from 'react-bootstrap';
+import { Container, Nav, Navbar, Button, Spinner } from 'react-bootstrap';
 import { Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import Detail from './components/Detail'
@@ -9,7 +9,9 @@ import data from './data.js';
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
+  let [count, setCount] = useState(0);
+  let [loading, setLoading] = useState(false);
 
   return (
     <div className="App">
@@ -37,15 +39,23 @@ function App() {
             }
             </div>
           </div>
-          <button onClick={ ()=>{
+          {
+            loading ? <Spinner animation="border" variant="primary">Loading...</Spinner> : null
+          }
+          <Button variant="primary" onClick={ ()=>{
+            setLoading(true);
             axios.get('https://codingapple1.github.io/shop/data2.json')
             .then((result)=>{
-              
+              console.log('1')
+              setShoes( [...shoes, ...result.data ] )
+              setCount( count+1 )
+              setLoading(false)
             })
             .catch(()=>{
               console.log('error')
+              setLoading(false)
             })
-          }}>더보기</button>
+          }}>더보기</Button>
         </div> 
         } />
         <Route path={ "/detail/:id" } element={ <Detail shoes={ shoes } /> } />
