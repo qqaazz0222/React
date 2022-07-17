@@ -40,7 +40,7 @@ function App() {
             </div>
           </div>
           {
-            loading ? <Spinner animation="border" variant="primary">Loading...</Spinner> : null
+            loading ? <Spinner animation="border" variant="primary"></Spinner> : null
           }
           <Button variant="primary" onClick={ ()=>{
             setLoading(true);
